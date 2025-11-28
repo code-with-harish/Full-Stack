@@ -14,6 +14,37 @@ A full-stack web application I built for managing employees and tasks. The app f
 
 ---
 
+## Screenshots
+
+### Login & Registration
+| Login Page | Registration Page |
+|------------|-------------------|
+| ![Login](screenshots/login.jpeg) | ![Register](screenshots/register.jpeg) |
+
+### Dashboard
+![Dashboard](screenshots/dashboard.jpeg)
+*Dashboard with statistics cards, task status chart, department distribution, recent employees and upcoming deadlines*
+
+### Employee Management
+![Employees](screenshots/employees.jpeg)
+*Employee list with search, filters, and CRUD operations*
+
+![Add Employee](screenshots/add-employee-modal.jpeg)
+*Modal form for adding new employees*
+
+### Task Management
+![Tasks](screenshots/tasks.jpeg)
+*Task list with inline status updates, priority badges, and due dates*
+
+### Kanban Board
+![Task Board](screenshots/taskboard.jpeg)
+*Kanban-style board with To Do, In Progress, and Completed columns*
+
+![Add Task](screenshots/add-task-modal.jpeg)
+*Modal form for creating new tasks*
+
+---
+
 ## What I Built
 
 ### Frontend (React)
@@ -173,7 +204,7 @@ The database auto-creates tables and seeds sample data on first run.
 
 ## Author
 
-Built by Harish as a full-stack development assignment by .
+Built by Harish as a full-stack development assignment by ProU Technology.
 
 ---
 
