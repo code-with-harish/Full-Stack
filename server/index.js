@@ -11,11 +11,8 @@ const dashboardRoutes = require('./routes/dashboard');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// Middleware
-app.use(cors({
-  origin: ['http://localhost:3000', 'https://fullstackww.netlify.app'],
-  credentials: true
-}));
+// Middleware - Allow all origins for now
+app.use(cors());
 app.use(express.json());
 
 // API Routes
@@ -23,6 +20,21 @@ app.use('/api/auth', authRoutes);
 app.use('/api/employees', employeeRoutes);
 app.use('/api/tasks', taskRoutes);
 app.use('/api/dashboard', dashboardRoutes);
+
+// API info route
+app.get('/api', (req, res) => {
+  res.json({
+    message: '🚀 TaskFlow API',
+    endpoints: {
+      health: 'GET /api/health',
+      login: 'POST /api/auth/login',
+      register: 'POST /api/auth/register',
+      employees: 'GET /api/employees',
+      tasks: 'GET /api/tasks',
+      dashboard: 'GET /api/dashboard/stats'
+    }
+  });
+});
 
 // Root route
 app.get('/', (req, res) => {
