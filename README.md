@@ -1,364 +1,405 @@
-#  TaskFlow - Employee & Task Management System
+# 🚀 TaskFlow - Employee & Task Management System
 
-A full-stack web application for managing employees and tasks, built with React, Node.js, Express, and SQLite.
+A comprehensive full-stack web application for managing employees and tasks, built with modern technologies.
 
-![TaskFlow Dashboard](screenshots/dashboard.png)
+---
 
-## Table of Contents
+## 🌐 Live Demo
 
-- [Features](#features)
-- [Tech Stack](#tech-stack)
-- [Project Structure](#project-structure)
-- [Setup Instructions](#setup-instructions)
-- [API Documentation](#api-documentation)
-- [Screenshots](#screenshots)
-- [Bonus Features](#bonus-features)
-- [Assumptions](#assumptions)
+| Service | URL |
+|---------|-----|
+| **🖥️ Frontend (Netlify)** | [https://fullstackww.netlify.app](https://fullstackww.netlify.app) |
+| **⚙️ Backend API (Render)** | [https://full-stack-p0an.onrender.com](https://full-stack-p0an.onrender.com) |
+| **📂 GitHub Repository** | [https://github.com/code-with-harish/Full-Stack](https://github.com/code-with-harish/Full-Stack) |
 
-## Features
-
-### Frontend (Track 1)
--  Responsive design that works on desktop and mobile
--  Modern, clean UI with smooth animations
--  Interactive dashboard with Chart.js visualizations
--  Search and filter functionality for employees and tasks
--  Pagination for large datasets
--  Client-side form validation
--  **Dark Mode** - Toggle between light and dark themes
--  **Kanban Board** - Drag-and-drop task management view
--  **Employee Profiles** - Detailed employee pages with task history
-
-### Backend (Track 2)
--  JWT-based authentication system
--  Protected API routes with middleware
--  Full CRUD operations for Employees and Tasks
--  Input validation and sanitization
--  SQLite database with proper schema design
--  Dashboard statistics API
--  Health check endpoint for deployment monitoring
-
-### Full Stack (Track 3)
--  Seamless frontend-backend integration
--  Real-time data synchronization
--  User authentication flow (login/register)
--  Toast notifications for user feedback
--  Consistent error handling across stack
--  **Deployment Ready** - Configured for Render & Netlify
-
-##  Tech Stack
-
-| Layer | Technology |
-|-------|------------|
-| Frontend | React 18, React Router v6, Chart.js |
-| Styling | Custom CSS (CSS Variables, Flexbox, Grid) |
-| Backend | Node.js, Express.js |
-| Database | SQLite (better-sqlite3) |
-| Authentication | JWT (jsonwebtoken), bcryptjs |
-| API Validation | express-validator |
-| HTTP Client | Axios |
-
-##  Project Structure
-
-```
-FullStack/
-├── client/                    # React Frontend
-│   ├── public/
-│   │   ├── index.html
-│   │   └── manifest.json
-│   └── src/
-│       ├── components/
-│       │   └── Navbar.js      # Navigation with theme toggle
-│       ├── context/
-│       │   ├── AuthContext.js # Authentication state management
-│       │   └── ThemeContext.js # Dark mode theme management
-│       ├── pages/
-│       │   ├── Dashboard.js   # Dashboard with charts
-│       │   ├── Employees.js   # Employee management
-│       │   ├── EmployeeProfile.js # Employee detail page
-│       │   ├── Login.js       # Authentication page
-│       │   ├── Tasks.js       # Task list management
-│       │   └── TaskBoard.js   # Kanban board view
-│       ├── services/
-│       │   └── api.js         # Axios configuration
-│       ├── App.js             # Main app with routing
-│       ├── index.css          # Global styles (light/dark)
-│       └── index.js           # Entry point
-│
-├── server/                    # Node.js Backend
-│   ├── config/
-│   │   └── database.js        # SQLite setup & seed data
-│   ├── data/
-│   │   └── database.sqlite    # SQLite database file
-│   ├── middleware/
-│   │   └── auth.js            # JWT authentication middleware
-│   ├── routes/
-│   │   ├── auth.js            # Authentication routes
-│   │   ├── dashboard.js       # Dashboard statistics
-│   │   ├── employees.js       # Employee CRUD routes
-│   │   └── tasks.js           # Task CRUD routes
-│   └── index.js               # Express server entry
-│
-├── .env.example               # Environment variables template
-├── .gitignore
-├── netlify.toml               # Netlify deployment config
-├── render.yaml                # Render deployment config
-├── package.json               # Root package.json
-└── README.md
-```
-
-##  Setup Instructions
-
-### Prerequisites
-
-- Node.js (v16 or higher)
-- npm or yarn
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/code-with-harish/my-repo.git
-   cd FullStack
-   ```
-
-2. **Install all dependencies**
-   ```bash
-   # Install root dependencies
-   npm install
-
-   # Install client dependencies
-   cd client && npm install && cd ..
-   ```
-
-   Or use the convenience script:
-   ```bash
-   npm run install-all
-   ```
-
-3. **Set up environment variables**
-   ```bash
-   # Copy the example env file
-   cp .env.example .env
-
-   # Edit .env and set your JWT_SECRET
-   # PORT=5000
-   # JWT_SECRET=your-secret-key
-   # NODE_ENV=development
-   ```
-
-4. **Start the application**
-
-   **Development mode (both servers):**
-   ```bash
-   npm run dev
-   ```
-
-   **Or run separately:**
-   ```bash
-   # Terminal 1 - Backend
-   npm run server
-
-   # Terminal 2 - Frontend
-   npm run client
-   ```
-
-5. **Access the application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000/api
-
-### Demo Credentials
-
+### 🔑 Demo Credentials
 ```
 Email: admin@company.com
 Password: admin123
-
--- or --
-
-Email: demo@company.com
-Password: demo123
 ```
 
-## API Documentation
+> **Note:** The backend is hosted on Render's free tier, which may take 30-60 seconds to wake up on first request after inactivity.
 
-### Authentication
+---
 
-| Endpoint | Method | Description | Auth Required |
-|----------|--------|-------------|---------------|
-| `/api/auth/register` | POST | Register new user | No |
-| `/api/auth/login` | POST | Login user | No |
-| `/api/auth/me` | GET | Get current user | Yes |
+## 📋 Table of Contents
 
-### Employees
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Screenshots](#-screenshots)
+- [Setup Instructions](#-setup-instructions)
+- [API Documentation](#-api-documentation)
+- [Project Structure](#-project-structure)
+- [Bonus Features](#-bonus-features)
+- [Assumptions](#-assumptions)
 
-| Endpoint | Method | Description | Auth Required |
-|----------|--------|-------------|---------------|
-| `/api/employees` | GET | Get all employees (paginated) | No |
-| `/api/employees/:id` | GET | Get single employee | No |
-| `/api/employees` | POST | Create employee | Yes |
-| `/api/employees/:id` | PUT | Update employee | Yes |
-| `/api/employees/:id` | DELETE | Delete employee | Yes |
-| `/api/employees/departments` | GET | Get department list | No |
+---
 
-**Query Parameters for GET /api/employees:**
+## ✨ Features
+
+### 🎨 Frontend (Track 1)
+| Feature | Description |
+|---------|-------------|
+| 📱 Responsive Design | Works seamlessly on desktop, tablet, and mobile |
+| 🎨 Modern UI | Clean interface with smooth animations and transitions |
+| 📊 Interactive Dashboard | Chart.js visualizations for data insights |
+| 🔍 Search & Filter | Advanced filtering for employees and tasks |
+| 📄 Pagination | Efficient data handling for large datasets |
+| ✅ Form Validation | Client-side validation with user feedback |
+| 🌓 Dark Mode | Toggle between light and dark themes |
+| 📋 Kanban Board | Visual task management with columns |
+| 👤 Employee Profiles | Detailed employee pages with task history |
+
+### ⚙️ Backend (Track 2)
+| Feature | Description |
+|---------|-------------|
+| 🔐 JWT Authentication | Secure token-based authentication system |
+| 🛡️ Protected Routes | Middleware-based route protection |
+| 📝 CRUD Operations | Full Create, Read, Update, Delete for all entities |
+| ✅ Input Validation | Server-side validation using express-validator |
+| 🗄️ SQLite Database | Lightweight database with proper schema design |
+| 📈 Statistics API | Dashboard analytics and reporting |
+| 🏥 Health Check | Deployment monitoring endpoint |
+
+### 🔗 Full Stack Integration (Track 3)
+| Feature | Description |
+|---------|-------------|
+| 🔄 Real-time Sync | Seamless data synchronization |
+| 👤 Auth Flow | Complete login/register user flow |
+| 🍞 Toast Notifications | Real-time user feedback |
+| 🎯 Error Handling | Consistent error handling across stack |
+| ☁️ Cloud Deployment | Deployed on Render & Netlify |
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+| Technology | Purpose |
+|------------|---------|
+| React 18 | UI Library |
+| React Router v6 | Client-side routing |
+| Chart.js | Data visualization |
+| Axios | HTTP client |
+| React Toastify | Notifications |
+| React Icons | Icon library |
+| CSS3 (Custom) | Styling with CSS Variables, Flexbox, Grid |
+
+### Backend
+| Technology | Purpose |
+|------------|---------|
+| Node.js | Runtime environment |
+| Express.js | Web framework |
+| SQLite (better-sqlite3) | Database |
+| JWT (jsonwebtoken) | Authentication |
+| bcryptjs | Password hashing |
+| express-validator | Input validation |
+| CORS | Cross-origin requests |
+
+### Deployment
+| Service | Purpose |
+|---------|---------|
+| Netlify | Frontend hosting |
+| Render | Backend hosting |
+| GitHub | Version control |
+
+---
+
+## 📸 Screenshots
+
+### 🔐 Login Page
+Modern authentication interface with dark mode support.
+- Clean, centered design
+- Demo credentials displayed
+- Form validation feedback
+
+### 📊 Dashboard
+Interactive analytics dashboard featuring:
+- **Summary Cards** - Total employees, tasks, completion rate
+- **Doughnut Chart** - Task status distribution
+- **Bar Chart** - Employees by department
+- **Recent Activity** - Latest employees and upcoming deadlines
+
+### 👥 Employees Page
+Comprehensive employee management:
+- **Search** - Filter by name, email, position
+- **Filters** - Department and status dropdowns
+- **CRUD** - Add, Edit, Delete employees
+- **Pagination** - Navigate through records
+- **Status Badges** - Visual status indicators
+
+### 👤 Employee Profile
+Detailed individual employee view:
+- **Info Card** - Contact details, department, position
+- **Task Stats** - Completed, in-progress, pending counts
+- **Task Distribution Chart** - Visual breakdown
+- **Assigned Tasks List** - All tasks for this employee
+
+### ✅ Tasks Page
+Task list management with:
+- **Quick Status Update** - Change status inline
+- **Priority Indicators** - Color-coded badges
+- **Overdue Highlighting** - Red badges for overdue tasks
+- **Assignee Display** - Show assigned employee
+
+### 📋 Task Board (Kanban)
+Visual project management:
+- **Three Columns** - Pending, In Progress, Completed
+- **Task Cards** - Priority, due date, assignee
+- **Add Tasks** - Create directly on board
+- **Edit/Delete** - Manage tasks from cards
+
+### 🌓 Dark Mode
+Full theme support:
+- **Toggle Button** - In navigation bar
+- **Persisted** - Saves preference to localStorage
+- **Complete Coverage** - All components styled
+
+---
+
+## 🚀 Setup Instructions
+
+### Prerequisites
+- **Node.js** v16 or higher
+- **npm** or **yarn**
+- **Git**
+
+### Step 1: Clone Repository
+```bash
+git clone https://github.com/code-with-harish/Full-Stack.git
+cd Full-Stack
+```
+
+### Step 2: Install Dependencies
+```bash
+# Install server dependencies
+npm install
+
+# Install client dependencies
+cd client && npm install && cd ..
+```
+
+### Step 3: Environment Setup
+```bash
+# Create .env file in root directory
+cp .env.example .env
+
+# Edit .env with your values:
+# PORT=5000
+# JWT_SECRET=your-super-secret-key-here
+# NODE_ENV=development
+```
+
+### Step 4: Start Development Servers
+
+**Option A: Run both servers concurrently**
+```bash
+npm run dev
+```
+
+**Option B: Run separately**
+```bash
+# Terminal 1 - Backend (port 5000)
+npm run server
+
+# Terminal 2 - Frontend (port 3000)
+npm run client
+```
+
+### Step 5: Access Application
+- **Frontend:** http://localhost:3000
+- **Backend API:** http://localhost:5000/api
+- **API Health:** http://localhost:5000/api/health
+
+### Demo Accounts
+| Role | Email | Password |
+|------|-------|----------|
+| Admin | admin@company.com | admin123 |
+| Demo | demo@company.com | demo123 |
+
+---
+
+## 📚 API Documentation
+
+### Base URL
+- **Local:** `http://localhost:5000/api`
+- **Production:** `https://full-stack-p0an.onrender.com/api`
+
+### Authentication Endpoints
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| POST | `/auth/register` | Register new user | ❌ |
+| POST | `/auth/login` | Login user | ❌ |
+| GET | `/auth/me` | Get current user | ✅ |
+
+**Login Request:**
+```json
+POST /api/auth/login
+{
+  "email": "admin@company.com",
+  "password": "admin123"
+}
+```
+
+**Login Response:**
+```json
+{
+  "message": "Login successful",
+  "token": "eyJhbGciOiJIUzI1NiIs...",
+  "user": {
+    "id": 1,
+    "username": "admin",
+    "email": "admin@company.com",
+    "role": "admin"
+  }
+}
+```
+
+### Employee Endpoints
+
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| GET | `/employees` | Get all employees (paginated) | ❌ |
+| GET | `/employees/:id` | Get single employee with tasks | ❌ |
+| POST | `/employees` | Create employee | ✅ |
+| PUT | `/employees/:id` | Update employee | ✅ |
+| DELETE | `/employees/:id` | Delete employee | ✅ |
+| GET | `/employees/departments` | Get department list | ❌ |
+
+**Query Parameters:**
 - `page` - Page number (default: 1)
 - `limit` - Items per page (default: 10)
-- `search` - Search by name, email, or position
+- `search` - Search by name, email, position
 - `department` - Filter by department
-- `status` - Filter by status (active/inactive)
-- `sortBy` - Sort field (default: created_at)
-- `sortOrder` - ASC or DESC (default: DESC)
+- `status` - Filter by active/inactive
 
-### Tasks
+### Task Endpoints
 
-| Endpoint | Method | Description | Auth Required |
-|----------|--------|-------------|---------------|
-| `/api/tasks` | GET | Get all tasks (paginated) | No |
-| `/api/tasks/:id` | GET | Get single task | No |
-| `/api/tasks` | POST | Create task | Yes |
-| `/api/tasks/:id` | PUT | Update task | Yes |
-| `/api/tasks/:id` | DELETE | Delete task | Yes |
-| `/api/tasks/stats` | GET | Get task statistics | No |
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| GET | `/tasks` | Get all tasks (paginated) | ❌ |
+| GET | `/tasks/:id` | Get single task | ❌ |
+| POST | `/tasks` | Create task | ✅ |
+| PUT | `/tasks/:id` | Update task | ✅ |
+| DELETE | `/tasks/:id` | Delete task | ✅ |
 
-**Query Parameters for GET /api/tasks:**
+**Query Parameters:**
 - `page` - Page number (default: 1)
 - `limit` - Items per page (default: 10)
-- `search` - Search by title or description
-- `status` - Filter by status (pending/in_progress/completed)
-- `priority` - Filter by priority (low/medium/high)
-- `employee_id` - Filter by assigned employee
+- `search` - Search by title, description
+- `status` - pending/in_progress/completed
+- `priority` - low/medium/high
+- `employee_id` - Filter by assignee
 
-### Dashboard
+### Dashboard Endpoints
 
-| Endpoint | Method | Description | Auth Required |
-|----------|--------|-------------|---------------|
-| `/api/dashboard/stats` | GET | Get dashboard statistics | No |
-| `/api/dashboard/performance` | GET | Get employee performance | No |
+| Method | Endpoint | Description | Auth |
+|--------|----------|-------------|------|
+| GET | `/dashboard/stats` | Get statistics | ❌ |
+| GET | `/dashboard/performance` | Get employee performance | ❌ |
 
-## Screenshots
+---
 
-### Login Page
-Modern login interface with demo credentials displayed and dark mode support.
+## 📁 Project Structure
 
-### Dashboard
-Interactive dashboard showing:
-- Summary statistics cards
-- Task status doughnut chart
-- Employees by department bar chart
-- Recent employees and upcoming deadlines
+```
+Full-Stack/
+├── 📂 client/                      # React Frontend
+│   ├── 📂 public/
+│   │   ├── index.html
+│   │   └── manifest.json
+│   └── 📂 src/
+│       ├── 📂 components/
+│       │   └── Navbar.js           # Navigation with theme toggle
+│       ├── 📂 context/
+│       │   ├── AuthContext.js      # Authentication state
+│       │   └── ThemeContext.js     # Dark mode state
+│       ├── 📂 pages/
+│       │   ├── Dashboard.js        # Analytics dashboard
+│       │   ├── Employees.js        # Employee CRUD
+│       │   ├── EmployeeProfile.js  # Employee details
+│       │   ├── Login.js            # Authentication
+│       │   ├── Tasks.js            # Task list
+│       │   └── TaskBoard.js        # Kanban board
+│       ├── 📂 services/
+│       │   └── api.js              # Axios configuration
+│       ├── App.js                  # Routes & layout
+│       ├── index.css               # Global styles
+│       └── index.js                # Entry point
+│
+├── 📂 server/                      # Node.js Backend
+│   ├── 📂 config/
+│   │   └── database.js             # SQLite setup & seeding
+│   ├── 📂 data/
+│   │   └── database.sqlite         # SQLite database
+│   ├── 📂 middleware/
+│   │   └── auth.js                 # JWT middleware
+│   ├── 📂 routes/
+│   │   ├── auth.js                 # Auth routes
+│   │   ├── dashboard.js            # Stats routes
+│   │   ├── employees.js            # Employee routes
+│   │   └── tasks.js                # Task routes
+│   └── index.js                    # Express entry
+│
+├── .env.example                    # Environment template
+├── .gitignore                      # Git ignore rules
+├── netlify.toml                    # Netlify config
+├── render.yaml                     # Render config
+├── package.json                    # Dependencies
+└── README.md                       # Documentation
+```
 
-### Employees Page
-Full employee management with:
-- Search and filter functionality
-- Add/Edit modal forms
-- Pagination
-- Status badges
-- Link to detailed employee profiles
+---
 
-### Employee Profile
-Detailed employee view featuring:
-- Employee information card
-- Statistics overview
-- Assigned tasks list
-- Performance metrics
+## 🌟 Bonus Features Implemented
 
-### Tasks Page
-Task management featuring:
-- Quick status update dropdown
-- Priority indicators
-- Overdue highlighting
-- Assignee management
+| # | Feature | Description |
+|---|---------|-------------|
+| 1 | 🔐 JWT Authentication | Secure token-based auth with protected routes |
+| 2 | 📊 Interactive Charts | Chart.js visualizations on dashboard |
+| 3 | 📱 Responsive Design | Mobile-first approach, works on all devices |
+| 4 | 🍞 Toast Notifications | Real-time feedback using react-toastify |
+| 5 | 🔍 Advanced Filtering | Multiple filters with search and pagination |
+| 6 | 🌱 Database Seeding | Auto-populated demo data on startup |
+| 7 | ✅ Input Validation | Client + server-side validation |
+| 8 | 🎯 Error Handling | Comprehensive error messages |
+| 9 | ⚡ Quick Status Toggle | Update task status inline |
+| 10 | ⏰ Overdue Detection | Visual indicators for overdue tasks |
+| 11 | 🌓 Dark Mode | Theme toggle with localStorage persistence |
+| 12 | 📋 Kanban Board | Visual task management view |
+| 13 | 👤 Employee Profiles | Detailed pages with task stats |
+| 14 | ☁️ Cloud Deployment | Live on Render + Netlify |
 
-### Task Board (Kanban)
-Visual task management with:
-- Three columns: Pending, In Progress, Completed
-- Drag-and-drop interface
-- Priority and due date indicators
-- Quick task filtering
+---
 
-### Dark Mode
-Toggle between light and dark themes:
-- Persisted in localStorage
-- Smooth transition animations
-- Full UI coverage
+## 📝 Assumptions
 
-## Bonus Features
+1. **Single Organization** - App designed for single company use
+2. **SQLite Database** - Chosen for simplicity; easily swappable to PostgreSQL/MySQL
+3. **No File Uploads** - Avatars use initials instead of images
+4. **Modern Browsers** - Targets Chrome, Firefox, Safari, Edge
+5. **Demo Data** - Database auto-seeds with sample data on first run
 
-1. **JWT Authentication** - Secure user authentication with token-based system
-2. **Interactive Charts** - Visual data representation using Chart.js
-3. **Responsive Design** - Mobile-friendly UI that adapts to all screen sizes
-4. **Toast Notifications** - Real-time feedback for user actions
-5. **Advanced Filtering** - Multiple filter options with pagination
-6. **Database Seeding** - Pre-populated demo data for testing
-7. **Input Validation** - Both client-side and server-side validation
-8. **Error Handling** - Comprehensive error handling with user-friendly messages
-9. **Quick Status Toggle** - Change task status directly from the table
-10. **Overdue Detection** - Visual indication of overdue tasks
-11. **Dark Mode** - Theme toggle with localStorage persistence
-12. **Kanban Board** - Visual task management with drag-and-drop columns
-13. **Employee Profiles** - Detailed employee pages with assigned tasks
-14. **Deployment Config** - Ready for Render (backend) & Netlify (frontend)
+---
 
-##  Deployment
-
-### Deploy Backend to Render
-
-1. Create account at [render.com](https://render.com)
-2. Connect your GitHub repository
-3. Create a new **Web Service**
-4. Select **Node** environment
-5. Set build command: `npm install`
-6. Set start command: `npm run server`
-7. Add environment variable: `JWT_SECRET` (generate a random string)
-8. Deploy!
-
-Your API will be available at: `https://your-app-name.onrender.com`
-
-### Deploy Frontend to Netlify
-
-1. Create account at [netlify.com](https://netlify.com)
-2. Connect your GitHub repository
-3. Set base directory: `client`
-4. Set build command: `npm run build`
-5. Set publish directory: `client/build`
-6. Add environment variable: `REACT_APP_API_URL=https://your-render-api.onrender.com`
-7. Update `netlify.toml` with your Render API URL
-8. Deploy!
-
-Your app will be available at: `https://your-app-name.netlify.app`
-
-### One-Click Deploy Options
-
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
-
-[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start)
-
-##  Assumptions
-
-1. **Single User Focus** - While authentication is implemented, the app is designed for single-organization use
-2. **SQLite Database** - Chosen for simplicity and zero-configuration setup; can be easily swapped for PostgreSQL/MySQL in production
-3. **No File Upload** - Avatar images use initials instead of uploaded images
-4. **Browser Support** - Modern browsers (Chrome, Firefox, Safari, Edge)
-5. **Local Development** - Designed to run locally; deployment instructions would need adjustments for cloud hosting
-
-## 🔧 Development Notes
-
-### Database Schema
+## 🗄️ Database Schema
 
 ```sql
--- Users table
+-- Users (Authentication)
 CREATE TABLE users (
-  id INTEGER PRIMARY KEY,
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
   username TEXT UNIQUE NOT NULL,
   email TEXT UNIQUE NOT NULL,
   password TEXT NOT NULL,
   role TEXT DEFAULT 'user',
-  created_at DATETIME,
-  updated_at DATETIME
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- Employees table
+-- Employees
 CREATE TABLE employees (
-  id INTEGER PRIMARY KEY,
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
   first_name TEXT NOT NULL,
   last_name TEXT NOT NULL,
   email TEXT UNIQUE NOT NULL,
@@ -368,13 +409,13 @@ CREATE TABLE employees (
   salary REAL,
   hire_date DATE NOT NULL,
   status TEXT DEFAULT 'active',
-  created_at DATETIME,
-  updated_at DATETIME
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 
--- Tasks table
+-- Tasks
 CREATE TABLE tasks (
-  id INTEGER PRIMARY KEY,
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
   title TEXT NOT NULL,
   description TEXT,
   status TEXT DEFAULT 'pending',
@@ -382,54 +423,62 @@ CREATE TABLE tasks (
   due_date DATE,
   employee_id INTEGER REFERENCES employees(id),
   created_by INTEGER REFERENCES users(id),
-  created_at DATETIME,
-  updated_at DATETIME
+  created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 ```
 
-### Environment Variables
+---
 
-| Variable | Description | Default |
-|----------|-------------|---------|
-| PORT | Server port | 5000 |
-| JWT_SECRET | Secret for JWT signing | - |
-| NODE_ENV | Environment mode | development |
-| REACT_APP_API_URL | Backend API URL (frontend) | http://localhost:5000 |
+## 🧪 Testing the API
 
-##  Testing the API
-
-You can test the API using curl, Postman, or any HTTP client:
+### Using cURL
 
 ```bash
-# Health check
-curl http://localhost:5000/api/health
+# Health Check
+curl https://full-stack-p0an.onrender.com/api/health
 
 # Login
-curl -X POST http://localhost:5000/api/auth/login \
+curl -X POST https://full-stack-p0an.onrender.com/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{"email":"admin@company.com","password":"admin123"}'
 
-# Get employees
-curl http://localhost:5000/api/employees
+# Get Employees
+curl https://full-stack-p0an.onrender.com/api/employees
 
-# Get tasks
-curl http://localhost:5000/api/tasks
+# Get Tasks
+curl https://full-stack-p0an.onrender.com/api/tasks
 
-# Get dashboard stats
-curl http://localhost:5000/api/dashboard/stats
+# Get Dashboard Stats
+curl https://full-stack-p0an.onrender.com/api/dashboard/stats
 ```
 
-##  License
+---
 
-MIT License - feel free to use this project for learning or commercial purposes.
+## 👨‍💻 Author
 
-##  Author
+**Harish**
 
-Created as part of a Full-stack Development Assignment demonstrating proficiency in:
-- **Frontend Development** (React, CSS, Responsive Design)
-- **Backend Development** (Node.js, Express, REST APIs)
-- **Database Design** (SQLite, SQL)
-- **Authentication** (JWT)
-- **DevOps** (Deployment Configuration)
+This project was created as part of a Full-Stack Development Assignment, demonstrating proficiency in:
+
+- ✅ **Frontend Development** - React, CSS, Responsive Design
+- ✅ **Backend Development** - Node.js, Express, REST APIs
+- ✅ **Database Design** - SQLite, SQL Queries
+- ✅ **Authentication** - JWT Implementation
+- ✅ **DevOps** - Cloud Deployment (Render, Netlify)
 
 ---
+
+## 📄 License
+
+MIT License - Feel free to use this project for learning purposes.
+
+---
+
+<div align="center">
+
+### 🌟 Thank you for reviewing this project! 🌟
+
+**Live Demo:** [https://fullstackww.netlify.app](https://fullstackww.netlify.app)
+
+</div>
