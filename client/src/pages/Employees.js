@@ -39,6 +39,7 @@ const Employees = () => {
   useEffect(() => {
     fetchEmployees();
     fetchDepartments();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [pagination.page, search, departmentFilter, statusFilter]);
 
   const fetchEmployees = async () => {
